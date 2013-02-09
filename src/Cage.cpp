@@ -18,7 +18,7 @@ void Cage::Render( Gwen::Skin::Base* skin )
 	bounds.w -= m_iBorder * 2;
 	bounds.h -= m_iBorder * 2;
 
-	skin->GetRender()->SetDrawColor( Color( 255, 255, 255, 100 ) );
+	skin->GetRender()->SetDrawColor( Color( 130, 30, 30, 10 ) );
 	skin->GetRender()->DrawFilledRect( bounds );
 
 	skin->GetRender()->SetDrawColor( Color( 20, 150, 255, 255 ) );
@@ -31,7 +31,7 @@ void Cage::PostLayout( Skin::Base* skin )
 {
 	if ( !m_Control ) return;
 
-    Gwen::Point canvaspos = m_Control->LocalPosToCanvas();
+	Gwen::Point canvaspos = m_Control->LocalPosToCanvas();
 	Gwen::Point parentpos = GetParent()->CanvasPosToLocal( canvaspos );
 
 	parentpos.x -= m_iBorder;

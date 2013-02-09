@@ -4,9 +4,9 @@
 #include "Gwen/Skins/TexturedBase.h"
 #include "DesignerBase.h"
 #ifdef WIN32
-    #include "Gwen/Renderers/DirectX9.h"
+	#include "Gwen/Renderers/DirectX9.h"
 #else
-    #include "Gwen/Renderers/Allegro.h"
+	#include "Gwen/Renderers/Allegro.h"
 #endif
 
 int main(int, char **)
@@ -14,7 +14,7 @@ int main(int, char **)
 #ifdef WIN32
 	Gwen::Renderer::DirectX9	renderer;
 #else
-	Gwen::Renderer::Allegro     renderer;
+	Gwen::Renderer::Allegro		renderer;
 #endif
 	Gwen::Skin::TexturedBase	skin( &renderer );
 	skin.SetRender( &renderer );
@@ -22,7 +22,7 @@ int main(int, char **)
 	Gwen::Controls::WindowCanvas window_canvas( -1, -1, 960, 600, &skin, "GWEN Designer" );
 	skin.Init( "img/DesignerSkin.png" );
 
-    skin.SetDefaultFont( L"OpenSans.ttf", 11 );
+	skin.SetDefaultFont( L"OpenSans.ttf", 11 );
 
 	DesignerBase* pDesignerBase = new DesignerBase( &window_canvas );
 
@@ -30,6 +30,6 @@ int main(int, char **)
 	{
 		window_canvas.DoThink();
 	}
-    
-    return 0;
+	
+	return 0;
 }

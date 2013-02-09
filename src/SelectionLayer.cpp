@@ -71,7 +71,8 @@ void SelectionLayer::OnMouseClickLeft( int x, int y, bool bDown )
 
 		if ( pCtrl != pChild )
 		{
-			Gwen::ControlFactory::Base* pFactory = pCtrl->UserData.Get<Gwen::ControlFactory::Base*>( "ControlFactory" );
+			Gwen::ControlFactory::Base* pFactory =
+				pCtrl->UserData.Get<Gwen::ControlFactory::Base*>( "ControlFactory" );
 
 			if ( pFactory->ChildTouched( pCtrl, pChild ) )
 				return;
@@ -106,7 +107,7 @@ void SelectionLayer::OnControlDragged( Event::Info info )
 	}
 
 	Event::Information inf;
-		inf.ControlList = m_Selected;
+	inf.ControlList = m_Selected;
 	onPropertiesChanged.Call( this, inf );
 }
 
@@ -142,7 +143,7 @@ void SelectionLayer::OnCageMoving( Event::Info info )
 	// Hide all of the selected panels, and this selection layer
 	{
 		for ( ControlList::List::const_iterator it = m_Selected.list.begin();
-              it != m_Selected.list.end(); ++it )
+			  it != m_Selected.list.end(); ++it )
 		{
 			(*it)->SetHidden( true );
 		}
