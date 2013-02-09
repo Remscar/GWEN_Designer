@@ -59,7 +59,7 @@ void Properties::AddPropertiesFromControl( Controls::Base* pControl, bool bAllow
 		//
 		ControlFactory::Property::List::const_iterator it = cf->Properties().begin();
 		ControlFactory::Property::List::const_iterator itEnd = cf->Properties().end();
-		for ( it; it != itEnd; ++it )
+		for ( ; it != itEnd; ++it )
 		{
 			Gwen::String strPropertyName = (*it)->Name();
 			Gwen::UnicodeString strValue = (*it)->GetValue( pControl );
