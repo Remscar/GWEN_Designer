@@ -71,7 +71,8 @@ void SelectionLayer::OnMouseClickLeft( int x, int y, bool bDown )
 
 		if ( pCtrl != pChild )
 		{
-			Gwen::ControlFactory::Base* pFactory = pCtrl->UserData.Get<Gwen::ControlFactory::Base*>( "ControlFactory" );
+			Gwen::ControlFactory::Base* pFactory =
+				pCtrl->UserData.Get<Gwen::ControlFactory::Base*>( "ControlFactory" );
 
 			if ( pFactory->ChildTouched( pCtrl, pChild ) )
 				return;
@@ -106,7 +107,7 @@ void SelectionLayer::OnControlDragged( Event::Info info )
 	}
 
 	Event::Information inf;
-		inf.ControlList = m_Selected;
+	inf.ControlList = m_Selected;
 	onPropertiesChanged.Call( this, inf );
 }
 
@@ -134,7 +135,6 @@ void SelectionLayer::OnCageMoving( Event::Info info )
 	if ( m_Selected.Contains( GetParent() ) )
 		return;
 
-
 	//
 	// Convert the passed canvas pos to a pos local to the canvas
 	//
@@ -142,7 +142,8 @@ void SelectionLayer::OnCageMoving( Event::Info info )
 	
 	// Hide all of the selected panels, and this selection layer
 	{
-		for ( ControlList::List::const_iterator it = m_Selected.list.begin(); it != m_Selected.list.end(); ++it )
+		for ( ControlList::List::const_iterator it = m_Selected.list.begin();
+			  it != m_Selected.list.end(); ++it )
 		{
 			(*it)->SetHidden( true );
 		}
@@ -160,7 +161,8 @@ void SelectionLayer::OnCageMoving( Event::Info info )
 	{
 		SetHidden( false );
 		
-		for ( ControlList::List::const_iterator it = m_Selected.list.begin(); it != m_Selected.list.end(); ++it )
+		for ( ControlList::List::iterator it = m_Selected.list.begin();
+              it != m_Selected.list.end(); ++it )
 		{
 			(*it)->SetHidden( false );
 			
@@ -169,7 +171,8 @@ void SelectionLayer::OnCageMoving( Event::Info info )
 			if ( !pCtrl ) continue;
 			if ( !pCtrl->UserData.Exists( "ControlFactory" ) ) continue;
 
-			Gwen::ControlFactory::Base* pFactory = pCtrl->UserData.Get<Gwen::ControlFactory::Base*>( "ControlFactory" );
+			Gwen::ControlFactory::Base* pFactory =
+                pCtrl->UserData.Get<Gwen::ControlFactory::Base*>( "ControlFactory" );
 
 			Controls::Base* pOldParent = (*it)->GetParent();
 
@@ -178,7 +181,7 @@ void SelectionLayer::OnCageMoving( Event::Info info )
 			if ( pCtrl && pCtrl != (*it)->GetParent() )
 			{
 				Gwen::Point pPos = (*it)->LocalPosToCanvas();
-				pFactory->AddChild( pCtrl, (*it), pCtrl->CanvasPosToLocal( info.Point ) );
+				pFactory->AddChild( pCtrl, *it, pCtrl->CanvasPosToLocal( info.Point ) );
 				(*it)->SetPos( (*it)->GetParent()->CanvasPosToLocal( pPos ) );
 
 				bHierachyChanged = bHierachyChanged || ( pOldParent != (*it)->GetParent() );

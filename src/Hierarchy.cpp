@@ -76,9 +76,8 @@ void Hierarchy::OnCanvasSelectionChanged( Event::Info info )
 {
 	m_Tree->DeselectAll();
 
-	info.ControlList;
-
-	for ( ControlList::List::const_iterator it = info.ControlList.list.begin(); it != info.ControlList.list.end(); ++it )
+	for ( ControlList::List::const_iterator it = info.ControlList.list.begin();
+		  it != info.ControlList.list.end(); ++it )
 	{
 		SelectNodeRepresentingControl( (*it), m_Tree );
 	}
@@ -88,7 +87,8 @@ void Hierarchy::SelectNodeRepresentingControl( Controls::Base* pControl, Control
 {
 	if ( pNode == NULL ) pNode = m_Tree;
 
-	if ( pNode->UserData.Exists( "TargetControl" ) && pNode->UserData.Get<Controls::Base*>( "TargetControl" ) == pControl )
+	if ( pNode->UserData.Exists( "TargetControl" ) &&
+		 pNode->UserData.Get<Controls::Base*>( "TargetControl" ) == pControl )
 	{
 		pNode->SetSelected( true, false );
 	}
